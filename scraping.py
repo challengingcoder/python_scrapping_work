@@ -27,7 +27,6 @@ def get_table(url, index):
 
     table = None
     ret_value = list()
-
     soup = get_soup(url)
     tables = soup.find_all('table')
 
@@ -39,15 +38,9 @@ def get_table(url, index):
         for row in table.find_all('tr'):
             cell_list = list()
             cells = row.find_all('td')
-            # I know that each row has 3 cells
-            # and that the second cell contains
-            # an ancor tag with Unicode characters
             try:
                 cell_list.append(cells[0].contents[0])
                 cell_list.append(cells[1].contents[0])
-                # anchor = cells[1]
-                # cell_list.append(unidecode(anchor.contents[0]))
-                # cell_list.append(cells[2].contents[0])
                 ret_value.append(cell_list)
             except:
                 pass
